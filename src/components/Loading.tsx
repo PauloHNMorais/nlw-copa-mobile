@@ -1,9 +1,9 @@
-import { Center, Spinner } from 'native-base';
+import { Center, Spinner } from "native-base";
 
-export const Loading = () => {
+export function Loading() {
   return (
-    <Center flex={1} bgColor='white'>
-      <Spinner color='yellow.500' size='lg' />
-    </Center>
+    <Center flex={1} bg="gray.900">
+      <Spinner color="yellow.500" />
+    </Center >
   );
-};
+}

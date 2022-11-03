@@ -16,6 +16,8 @@ import {
 } from '@expo-google-fonts/roboto';
 import { Loading } from './src/components/Loading';
 import { SignIn } from './src/screens/SignIn';
+import { AuthContextProvider } from './src/contexts/AuthContext';
+import { New } from './src/screens/New';
 
 export default function App() {
   const colorScheme = useColorScheme() || 'light';
@@ -26,13 +28,15 @@ export default function App() {
   });
 
   return (
-    <NativeBaseProvider theme={THEME[colorScheme]}>
-      <StatusBar
-        barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
-        backgroundColor='transparent'
-        translucent
-      />
-      {fontsLoaded ? <SignIn /> : <Loading />}
+    <NativeBaseProvider theme={THEME.light}>
+      <AuthContextProvider>
+        <StatusBar
+          barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
+          backgroundColor='transparent'
+          translucent
+        />
+        {fontsLoaded ? <New /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
