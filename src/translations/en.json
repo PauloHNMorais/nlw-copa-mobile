@@ -1,0 +1,95 @@
+{
+  "components": {
+    "emptyMyPoolList": {
+      "esteBolaoNaoTemParticipantes": "This pool does not have participants yet, how about",
+      "compartilharCodigo": "sharing the pool's code",
+      "comAlguem": "with someone?",
+      "useCodigo": "Use the following code:"
+    },
+    "emptyPoolList": {
+      "voceNaoEstaParticipando": "You are not participating at any pools yet, how about",
+      "buscarUmPorCodigo": "find one by code",
+      "ou": "or",
+      "criarUmNovo": "create a new"
+    },
+    "emptyRankingList": {
+      "ranking": "The pool ranking has not yet been \nformed, wait for the results."
+    },
+    "flag": {
+      "bandeira": "Flag"
+    },
+    "game": {
+      "confirmarPalpite": "CONFIRM GUESS"
+    },
+    "guesses": {
+      "ops": "Oops!",
+      "informePlacar": "Enter the guess score"
+    },
+    "poolCard": {
+      "criadoPor": "Created by",
+      "voce": "(you)"
+    },
+    "poolHeader": {
+      "codigo": "Code:"
+    },
+    "rankingCard": {
+      "pontos": "point(s)"
+    }
+  },
+  "routes": {
+    "novo": "New Pool",
+    "boloes": "My Pools",
+    "detalhes": "Details",
+    "perfil": "My Profile",
+    "settings": "Settings"
+  },
+  "screens": {
+    "details": {
+      "seusPalpites": "Your Guesses",
+      "rankingDoGrupo": "Group Ranking"
+    },
+    "find": {
+      "encontreUmBolao": "Find a pool using your unique code",
+      "qualCodigo": "What is the pool's code?",
+      "buscarBolao": "Find Pool",
+      "buscaPorCodigo": "Search by Code",
+      "ops": "Oops!",
+      "informeCodigo": "Enter the code"
+    },
+    "new": {
+      "criarNovoBolao": "Create new pool",
+      "criarMeuBolao": "Create my Pool",
+      "qualNome": "What is your pool's name?",
+      "crieSeuProprioBolao": "Create your own World Cup pool and share with your friends!",
+      "aposCriarSeuBolao": "After creating your pool, you will receive a unique code that you can use to invite others.",
+      "opa": "Oops!",
+      "informeUmTitulo": "Enter a name for your pool"
+    },
+    "pools": {
+      "meusBoloes": "My pools",
+      "buscarBolao": "Search pool by code"
+    },
+    "profile": {
+      "meuPerfil": "My profile",
+      "criadoEm": "Created at",
+      "pontosTotais": "total points",
+      "boloesCriados": "pools",
+      "palpitesCertos": "right guesses",
+      "sair": "LOGOUT"
+    },
+    "settings": {
+      "configuracoes": "Settings",
+      "tema": "Theme",
+      "automatico": "Auto",
+      "claro": "Light",
+      "escuro": "Dark",
+      "idioma": "Language",
+      "pt": "Portuguese",
+      "en": "English"
+    },
+    "signIn": {
+      "entrarComGoogle": "Login with Google",
+      "naoUtilizamosNenhumaInformacao": "We do not use any information other than \n your email to create your account."
+    }
+  }
+}

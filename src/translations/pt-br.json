@@ -1,0 +1,95 @@
+{
+  "components": {
+    "emptyMyPoolList": {
+      "esteBolaoNaoTemParticipantes": "Esse bolão ainda não tem participantes, que tal",
+      "compartilharCodigo": "compartilhar o código",
+      "comAlguem": "do bolão com alguém?",
+      "useCodigo": "Use o seguinte código:"
+    },
+    "emptyPoolList": {
+      "voceNaoEstaParticipando": "Você ainda não está participando de nenhum bolão, que tal",
+      "buscarUmPorCodigo": "buscar um por código",
+      "ou": "ou",
+      "criarUmNovo": "criar um novo"
+    },
+    "emptyRankingList": {
+      "ranking": "O ranking desse bolão ainda não foi \nformado, aguarde os resultados."
+    },
+    "flag": {
+      "bandeira": "Bandeira"
+    },
+    "game": {
+      "confirmarPalpite": "CONFIRMAR PALPITE"
+    },
+    "guesses": {
+      "ops": "Ops!",
+      "informePlacar": "Informe o placar do palpite"
+    },
+    "poolCard": {
+      "criadoPor": "Criado por",
+      "voce": "(você)"
+    },
+    "poolHeader": {
+      "codigo": "Código:"
+    },
+    "rankingCard": {
+      "pontos": "ponto(s)"
+    }
+  },
+  "routes": {
+    "novo": "Novo Bolão",
+    "boloes": "Meus Bolões",
+    "detalhes": "Detalhes",
+    "perfil": "Meu Perfil",
+    "settings": "Configurações"
+  },
+  "screens": {
+    "details": {
+      "seusPalpites": "Seus Palpites",
+      "rankingDoGrupo": "Ranking do Grupo"
+    },
+    "find": {
+      "encontreUmBolao": "Encontre um bolão através de seu código único",
+      "qualCodigo": "Qual o código do bolão?",
+      "buscarBolao": "Buscar Bolão",
+      "buscaPorCodigo": "Busca por Código",
+      "ops": "Ops!",
+      "informeCodigo": "Informe o código"
+    },
+    "new": {
+      "criarNovoBolao": "Criar novo bolão",
+      "criarMeuBolao": "Criar meu Bolão",
+      "qualNome": "Qual o nome do seu bolão?",
+      "crieSeuProprioBolao": "Crie seu próprio bolão da copa e compartilhe entre amigos!",
+      "aposCriarSeuBolao": "Após criar seu bolão, você receberá um código único que poderá usar para convidar outras pessoas.",
+      "opa": "Opa!",
+      "informeUmTitulo": "Informe um nome para o seu bolão"
+    },
+    "pools": {
+      "meusBoloes": "Meus bolões",
+      "buscarBolao": "Buscar bolão por código"
+    },
+    "profile": {
+      "meuPerfil": "Meu perfil",
+      "criadoEm": "Cadastrado em",
+      "pontosTotais": "pontos no total",
+      "boloesCriados": "bolões",
+      "palpitesCertos": "palpites certos",
+      "sair": "SAIR"
+    },
+    "settings": {
+      "configuracoes": "Configurações",
+      "tema": "Tema",
+      "automatico": "Automático",
+      "claro": "Claro",
+      "escuro": "Escuro",
+      "idioma": "Idioma",
+      "pt": "Português",
+      "en": "Inglês"
+    },
+    "signIn": {
+      "entrarComGoogle": "Entrar com Google",
+      "naoUtilizamosNenhumaInformacao": "Não utilizamos nenhuma informação além \n do seu e-mail para criação de sua conta"
+    }
+  }
+}

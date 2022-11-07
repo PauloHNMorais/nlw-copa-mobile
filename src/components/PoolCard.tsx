@@ -2,6 +2,9 @@ import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { Heading, HStack, Text, VStack } from 'native-base';
 
 import { Participants, ParticipantProps } from './Participants';
+import { createLocalization } from '../utils/createLocalization';
+import { useAuth } from '../hooks/useAuth';
+import { useSettings } from '../hooks/useSettings';
 
 export interface PoolPros {
   id: string;
@@ -11,11 +14,12 @@ export interface PoolPros {
   createdAt: string;
   owner: {
     name: string;
-  },
+    id: string;
+  };
   participants: ParticipantProps[];
   _count: {
     participants: number;
-  }
+  };
 }
 
 interface Props extends TouchableOpacityProps {
@@ -23,27 +27,31 @@ interface Props extends TouchableOpacityProps {
 }
 
 export function PoolCard({ data, ...rest }: Props) {
+  const { user } = useAuth();
+  const { i18n } = useSettings();
+
   return (
     <TouchableOpacity {...rest}>
       <HStack
-        w="full"
+        w='full'
         h={20}
-        bgColor="gray.800"
+        bgColor='card'
         borderBottomWidth={3}
-        borderBottomColor="yellow.500"
-        justifyContent="space-between"
-        alignItems="center"
-        rounded="sm"
+        borderBottomColor='yellow.500'
+        justifyContent='space-between'
+        alignItems='center'
+        rounded='sm'
         mb={3}
         p={4}
       >
         <VStack>
-          <Heading color="white" fontSize="md" fontFamily="heading">
+          <Heading color='gray.100' fontSize='md' fontWeight='bold'>
             {data.title}
           </Heading>
 
-          <Text color="gray.200" fontSize="xs">
-            Criado por {data.owner.name}
+          <Text color='gray.200' fontSize='xs'>
+            {i18n.t('components.poolCard.criadoPor')} {data.owner.name}{' '}
+            {data.owner.id === user.sub && i18n.t('components.poolCard.voce')}
           </Text>
         </VStack>
 

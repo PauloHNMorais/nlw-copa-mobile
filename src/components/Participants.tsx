@@ -1,40 +1,47 @@
-import { Avatar, Center, HStack, Text } from 'native-base';
+import { Center, HStack, Text } from 'native-base';
+import { Avatar } from './Avatar';
 
 export interface ParticipantProps {
   id: string;
   user: {
     name: string;
-    avatarUrl: string;
+    avatarURL: string;
+    initials: string;
   };
-};
+}
 
 interface Props {
   participants: ParticipantProps[];
   count: number;
-};
+}
 
-export function Participants({participants, count }: Props) {
+export function Participants({ participants, count }: Props) {
   return (
     <HStack>
-      {
-        participants && participants.map((participant) => (
+      {participants &&
+        participants.map((participant) => (
           <Avatar
             key={participant.id}
-            source={{ uri: participant.user.avatarUrl}}
+            userName={participant.user?.name}
+            source={{ uri: participant.user.avatarURL }}
             w={8}
             h={8}
-            rounded="full"
-            borderWidth={2}
             marginRight={-3}
-            borderColor="gray.800"
+            borderColor='card'
           >
-           {participant.user?.name?.at(0).toUpperCase()}
+            {participant.user?.initials}
           </Avatar>
-        ))
-      }
+        ))}
 
-      <Center w={8} h={8} bgColor="gray.700" rounded="full" borderWidth={1} borderColor="gray.800">
-        <Text color="gray.100" fontSize="xs" fontFamily="medium">
+      <Center
+        w={8}
+        h={8}
+        bgColor='gray.700'
+        rounded='full'
+        borderWidth={1}
+        borderColor='card'
+      >
+        <Text color='gray.100' fontSize='xs' fontWeight='medium'>
           {count ? `+${count}` : 0}
         </Text>
       </Center>
