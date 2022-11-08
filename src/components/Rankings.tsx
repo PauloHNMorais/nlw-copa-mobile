@@ -1,7 +1,9 @@
 import { FlatList, Text } from 'native-base';
 import { useEffect, useState } from 'react';
 import { useAPI } from '../hooks/useAPI';
+import { Loading } from './Loading';
 import { RankingCard } from './RankingCard';
+import { RefreshControl } from './RefreshControl';
 
 interface Props {
   poolId: string;
@@ -25,8 +27,15 @@ export default function Rankings({ poolId }: Props) {
     }
   }, [poolId]);
 
+  if (isLoading && !usersScores.length) {
+    return <Loading />;
+  }
+
   return (
     <FlatList
+      refreshControl={
+        <RefreshControl refreshing={isLoading} onRefresh={fetchScores} />
+      }
       data={usersScores}
       keyExtractor={(item) => item.id}
       renderItem={({ item, index }) => (

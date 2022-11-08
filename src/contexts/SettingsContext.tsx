@@ -4,6 +4,8 @@ import * as Localization from 'expo-localization';
 import { I18n } from 'i18n-js';
 import en from '../translations/en.json';
 import ptBR from '../translations/pt-br.json';
+import { useColorScheme } from 'react-native';
+import { useTheme } from 'native-base';
 
 type Theme = 'light' | 'dark' | 'auto';
 

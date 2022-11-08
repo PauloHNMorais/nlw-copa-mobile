@@ -2,10 +2,17 @@ import { Text, HStack, Box, useTheme } from 'native-base';
 import { CaretLeft, Export, ShareNetwork } from 'phosphor-react-native';
 import { ButtonIcon } from './ButtonIcon';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Platform, TouchableOpacity, useColorScheme } from 'react-native';
+import {
+  Dimensions,
+  Platform,
+  TouchableOpacity,
+  useColorScheme,
+} from 'react-native';
 import { useAuth } from '../hooks/useAuth';
 import { Avatar } from './Avatar';
 import { useSettings } from '../hooks/useSettings';
+
+const SCREEN_WIDTH = Dimensions.get('window').width / 3;
 
 interface Props {
   title: string;
@@ -34,30 +41,32 @@ export function Header({
       h={24}
       bgColor={isDark ? 'card' : 'card'}
       alignItems='flex-end'
-      pb={5}
+      pb={2}
       px={5}
+      shadow='4'
     >
-      <HStack w='full' alignItems='center' justifyContent='space-between'>
-        {showBackButton ? (
-          <ButtonIcon
-            icon={CaretLeft}
-            onPress={() => navigation.navigate('pools')}
-          />
-        ) : (
-          <EmptyBoxSpace />
-        )}
+      <HStack alignItems='center' w='full'>
+        <HStack w='1/4' alignItems='center'>
+          {showBackButton ? (
+            <ButtonIcon icon={CaretLeft} onPress={() => navigation.goBack()} />
+          ) : (
+            <EmptyBoxSpace />
+          )}
+        </HStack>
 
-        <Text
-          color='gray.100'
-          fontWeight='medium'
-          fontSize='md'
-          textAlign='center'
-          numberOfLines={1}
-        >
-          {title}
-        </Text>
+        <HStack w='1/2' alignItems='center' justifyContent='center'>
+          <Text
+            color='gray.100'
+            fontWeight='medium'
+            fontSize='sm'
+            textAlign='center'
+            numberOfLines={2}
+          >
+            {title}
+          </Text>
+        </HStack>
 
-        <HStack alignItems='center' space={4}>
+        <HStack alignItems='center' justifyContent='flex-end' space={4} w='1/4'>
           {showShareButton ? (
             <ButtonIcon icon={ShareIcon} onPress={onShare} />
           ) : // <EmptyBoxSpace />
@@ -65,7 +74,7 @@ export function Header({
 
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate('profile', {
+              navigation.navigate('myProfile', {
                 userId: user.sub,
                 isUserProfile: true,
               })

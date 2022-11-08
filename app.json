@@ -1,11 +1,14 @@
 {
   "expo": {
-    "name": "nlwcopamobile",
-    "slug": "nlwcopamobile",
+    "name": "NLW Copa",
+    "slug": "nlw-copa",
+    "owner": "paulohnm",
     "version": "1.0.0",
+    "githubUrl": "https://github.com/PauloHNMorais/nlw-copa-mobile",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
+    "primaryColor": "#F7DD43",
     "scheme": "nlwcopamobile",
     "splash": {
       "image": "./assets/splash.png",

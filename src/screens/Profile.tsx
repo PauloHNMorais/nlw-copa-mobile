@@ -40,7 +40,7 @@ export interface User {
 }
 
 export function Profile() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const theme = useTheme();
   const route = useRoute();
   const { userId, isUserProfile = false } = route.params as RouteParams;
@@ -75,109 +75,111 @@ export function Profile() {
         showBackButton
       />
 
-      {isLoading && <Loading />}
-
-      <VStack
-        bgColor='card'
-        my={6}
-        mx={5}
-        p={4}
-        rounded='sm'
-        borderBottomWidth={3}
-        borderBottomColor='yellow.500'
-      >
-        <HStack
-          borderBottomWidth={1}
-          borderBottomColor='gray.600'
-          pb={4}
-          alignItems='center'
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <VStack
+          bgColor='card'
+          my={6}
+          mx={5}
+          p={4}
+          rounded='sm'
+          borderBottomWidth={3}
+          borderBottomColor='yellow.500'
         >
-          <TouchableWithoutFeedback onPress={() => setShowProfileModal(true)}>
-            <Avatar
-              userName={userInfo?.name}
-              source={{ uri: userInfo?.avatarURL }}
-              w={16}
-              h={16}
-              mr={4}
-              _text={{ fontSize: '2xl' }}
-            >
-              {userInfo?.initials}
-            </Avatar>
-          </TouchableWithoutFeedback>
+          <HStack
+            borderBottomWidth={1}
+            borderBottomColor='gray.600'
+            pb={4}
+            alignItems='center'
+          >
+            <TouchableWithoutFeedback onPress={() => setShowProfileModal(true)}>
+              <Avatar
+                userName={userInfo?.name}
+                source={{ uri: userInfo?.avatarURL }}
+                w={16}
+                h={16}
+                mr={4}
+                _text={{ fontSize: '2xl' }}
+              >
+                {userInfo?.initials}
+              </Avatar>
+            </TouchableWithoutFeedback>
 
-          <VStack>
-            <Text color='gray.100' fontSize='lg' fontWeight='bold'>
-              {userInfo?.name}
-            </Text>
-
-            <Text color='gray.200' fontSize='sm'>
-              {userInfo?.email}
-            </Text>
-
-            <Text color='gray.200' fontSize='sm'>
-              {i18n.t('screens.profile.criadoEm')}{' '}
-              {dayjs(userInfo?.createdAt).format('L')}
-            </Text>
-          </VStack>
-        </HStack>
-
-        <HStack justifyContent='space-between'>
-          <VStack pt={4} alignItems='center'>
-            <HStack alignItems='center'>
-              <Medal
-                color={theme.colors.yellow[500]}
-                size={theme.sizes[6]}
-                weight='thin'
-              />
-              <Text color='yellow.500' fontSize='xl' fontWeight='thin'>
-                {userInfo?.totalScore}
+            <VStack>
+              <Text color='gray.100' fontSize='lg' fontWeight='bold'>
+                {userInfo?.name}
               </Text>
-            </HStack>
-            <Text color='gray.100' fontWeight='thin'>
-              {' '}
-              {i18n.t('screens.profile.pontosTotais')}
-            </Text>
-          </VStack>
 
-          <VStack pt={4} alignItems='center'>
-            <HStack alignItems='center'>
-              <Check
-                color={theme.colors.yellow[500]}
-                size={theme.sizes[6]}
-                weight='thin'
-              />
-              <Text color='yellow.500' fontSize='xl' fontWeight='thin'>
-                {userInfo?.totalRightGuesses}
+              <Text color='gray.200' fontSize='sm'>
+                {userInfo?.email}
               </Text>
-            </HStack>
-            <Text color='gray.100' fontWeight='thin'>
-              {' '}
-              {i18n.t('screens.profile.palpitesCertos')}
-            </Text>
-          </VStack>
 
-          <VStack pt={4} alignItems='center'>
-            <HStack alignItems='center'>
-              <SoccerBall
-                color={theme.colors.yellow[500]}
-                size={theme.sizes[6]}
-                weight='thin'
-              />
-              <Text color='yellow.500' fontSize='xl' fontWeight='thin'>
-                {userInfo?.totalPools}
+              <Text color='gray.200' fontSize='sm'>
+                {i18n.t('screens.profile.criadoEm')}{' '}
+                {dayjs(userInfo?.createdAt).format('L')}
               </Text>
-            </HStack>
-            <Text color='gray.100' fontWeight='thin'>
-              {' '}
-              {i18n.t('screens.profile.boloesCriados')}
-            </Text>
-          </VStack>
-        </HStack>
-      </VStack>
+            </VStack>
+          </HStack>
+
+          <HStack justifyContent='space-between'>
+            <VStack pt={4} alignItems='center'>
+              <HStack alignItems='center'>
+                <Medal
+                  color={theme.colors.yellow[500]}
+                  size={theme.sizes[6]}
+                  weight='thin'
+                />
+                <Text color='yellow.500' fontSize='xl' fontWeight='thin'>
+                  {userInfo?.totalScore}
+                </Text>
+              </HStack>
+              <Text color='gray.100' fontWeight='thin'>
+                {' '}
+                {i18n.t('screens.profile.pontosTotais')}
+              </Text>
+            </VStack>
+
+            <VStack pt={4} alignItems='center'>
+              <HStack alignItems='center'>
+                <Check
+                  color={theme.colors.yellow[500]}
+                  size={theme.sizes[6]}
+                  weight='thin'
+                />
+                <Text color='yellow.500' fontSize='xl' fontWeight='thin'>
+                  {userInfo?.totalRightGuesses}
+                </Text>
+              </HStack>
+              <Text color='gray.100' fontWeight='thin'>
+                {' '}
+                {i18n.t('screens.profile.palpitesCertos')}
+              </Text>
+            </VStack>
+
+            <VStack pt={4} alignItems='center'>
+              <HStack alignItems='center'>
+                <SoccerBall
+                  color={theme.colors.yellow[500]}
+                  size={theme.sizes[6]}
+                  weight='thin'
+                />
+                <Text color='yellow.500' fontSize='xl' fontWeight='thin'>
+                  {userInfo?.totalPools}
+                </Text>
+              </HStack>
+              <Text color='gray.100' fontWeight='thin'>
+                {' '}
+                {i18n.t('screens.profile.boloesCriados')}
+              </Text>
+            </VStack>
+          </HStack>
+        </VStack>
+      )}
 
       {isUserProfile && (
         <Center mx={5} my={4}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={signOut}>
             <HStack alignItems='center' space={1}>
               <SignOut
                 color={theme.colors.red[500]}

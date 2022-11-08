@@ -7,6 +7,8 @@ import { useAPI } from '../hooks/useAPI';
 import { useSettings } from '../hooks/useSettings';
 import { createLocalization } from '../utils/createLocalization';
 import { Game } from './Game';
+import { Loading } from './Loading';
+import { RefreshControl } from './RefreshControl';
 
 interface Props {
   poolId: string;
@@ -74,8 +76,15 @@ export function Guesses({ poolId }: Props) {
     }
   }, [poolId]);
 
+  if (isLoading && !games?.length) {
+    return <Loading />;
+  }
+
   return (
     <FlatList
+      refreshControl={
+        <RefreshControl refreshing={isLoading} onRefresh={fetchGames} />
+      }
       data={games}
       keyExtractor={(item) => item.id}
       keyboardShouldPersistTaps='handled'

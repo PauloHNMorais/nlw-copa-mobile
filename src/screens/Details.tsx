@@ -1,5 +1,5 @@
 import { useFocusEffect, useRoute } from '@react-navigation/native';
-import { HStack, VStack } from 'native-base';
+import { HStack, Slide, VStack } from 'native-base';
 import { useCallback, useState } from 'react';
 import { Header } from '../components/Header';
 import { Loading } from '../components/Loading';
@@ -61,12 +61,12 @@ export function Details() {
         onShare={handleCodeShare}
       />
 
+      {!!pool && <PoolHeader data={pool} />}
+
       {isLoading ? (
         <Loading />
       ) : pool?._count?.participants ? (
         <VStack px={5} flex={1}>
-          <PoolHeader data={pool} />
-
           <HStack bgColor='card' p={1} rounded='sm' mb={5}>
             <Option
               title={i18n.t('screens.details.seusPalpites')}

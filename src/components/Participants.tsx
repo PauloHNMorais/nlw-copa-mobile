@@ -28,6 +28,7 @@ export function Participants({ participants, count }: Props) {
             h={8}
             marginRight={-3}
             borderColor='card'
+            borderWidth='1'
           >
             {participant.user?.initials}
           </Avatar>
@@ -38,7 +39,7 @@ export function Participants({ participants, count }: Props) {
         h={8}
         bgColor='gray.700'
         rounded='full'
-        borderWidth={1}
+        borderWidth='1'
         borderColor='card'
       >
         <Text color='gray.100' fontSize='xs' fontWeight='medium'>

@@ -8,11 +8,15 @@ export declare global {
         id: string;
         title: string;
       };
-      profile: {
+      myProfile: {
         userId: string;
         isUserProfile?: boolean;
       };
       settings: undefined;
+      userProfile: {
+        userId: string;
+        isUserProfile?: boolean;
+      };
     }
   }
 }

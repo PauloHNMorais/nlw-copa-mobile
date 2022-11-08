@@ -2,7 +2,6 @@ import { FlatList, Icon, VStack } from 'native-base';
 import { Button } from '../components/Button';
 import { Header } from '../components/Header';
 import { Octicons } from '@expo/vector-icons';
-import { createLocalization } from '../utils/createLocalization';
 import { useNavigation } from '@react-navigation/native';
 import { useAPI } from '../hooks/useAPI';
 import { Loading } from '../components/Loading';

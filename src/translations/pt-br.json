@@ -19,7 +19,8 @@
       "bandeira": "Bandeira"
     },
     "game": {
-      "confirmarPalpite": "CONFIRMAR PALPITE"
+      "confirmarPalpite": "CONFIRMAR PALPITE",
+      "tempoEsgotado": "TEMPO ESGOTADO"
     },
     "guesses": {
       "ops": "Ops!",
@@ -34,6 +35,11 @@
     },
     "rankingCard": {
       "pontos": "ponto(s)"
+    }
+  },
+  "contexts": {
+    "authContext": {
+      "eNecessarioEntrar": "É necessário entrar com sua conta do Google"
     }
   },
   "routes": {

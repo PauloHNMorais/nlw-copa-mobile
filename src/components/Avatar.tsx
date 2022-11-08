@@ -14,7 +14,7 @@ export function Avatar(props: AvatarProps) {
       w={8}
       h={8}
       rounded='full'
-      borderColor='card'
+      borderColor='gray.500'
       borderWidth={2}
       bgColor={props.userName ? stringToColour(props.userName) : 'gray.500'}
       _text={{

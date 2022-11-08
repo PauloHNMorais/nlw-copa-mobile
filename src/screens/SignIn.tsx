@@ -3,7 +3,6 @@ import Logo from '../assets/logo.svg';
 import { Button } from '../components/Button';
 import { Fontisto } from '@expo/vector-icons';
 import { useAuth } from '../hooks/useAuth';
-import { createLocalization } from '../utils/createLocalization';
 import { useSettings } from '../hooks/useSettings';
 
 export const SignIn = () => {

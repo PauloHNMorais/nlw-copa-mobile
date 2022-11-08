@@ -4,6 +4,8 @@ import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 import { api } from '../services/api';
 import { useAsyncStorage } from '../hooks/useAsyncStorage';
+import { useToast } from '../hooks/useToast';
+import { useSettings } from '../hooks/useSettings';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -19,6 +21,7 @@ export interface User {
 export interface AuthContextDataProps {
   user: User;
   signIn: () => Promise<void>;
+  signOut: () => Promise<void>;
   isUserLoading: boolean;
 }
 
@@ -28,6 +31,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [isUserLoading, setIsUserLoading] = useState(false);
   const [user, setUser] = useState({} as User);
   const [accessToken, setAccessToken] = useAsyncStorage('refreshToken', '');
+  const toast = useToast();
+  const { i18n } = useSettings();
 
   const [req, res, promptAsync] = Google.useAuthRequest({
     clientId: process.env.GOOGLE_CLIENT_ID,
@@ -38,6 +43,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (res?.type === 'success' && res.authentication?.accessToken) {
       signInWithGoogle(res.authentication.accessToken);
+    } else if (res?.type === 'error') {
+      toast.warn(i18n.t('contexts.authContext.eNecessarioEntrar'));
     }
   }, [res]);
 
@@ -81,10 +88,16 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
+  async function signOut() {
+    try {
+    } catch (error) {}
+  }
+
   return (
     <AuthContext.Provider
       value={{
         signIn,
+        signOut,
         isUserLoading,
         user,
       }}

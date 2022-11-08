@@ -10,6 +10,7 @@ import { countriesListPTBR } from '../utils/countriesListPTBR';
 
 import countriesEN from '../translations/countries-en.json';
 import countriesPTBR from '../translations/countries-pt-br.json';
+import { useMemo } from 'react';
 
 interface GuessProps {
   id: string;
@@ -44,6 +45,10 @@ export function Game({
   const { colors, sizes } = useTheme();
   const { i18n, language } = useSettings();
 
+  const timesUp = useMemo(() => {
+    return data?.date && dayjs().isAfter(data.date);
+  }, []);
+
   const getName = (
     code: keyof typeof countriesEN & keyof typeof countriesPTBR
   ) => {
@@ -61,7 +66,7 @@ export function Game({
       rounded='sm'
       alignItems='center'
       borderBottomWidth={3}
-      borderBottomColor='yellow.500'
+      borderBottomColor={data.guess ? 'gray.600' : 'yellow.500'}
       mb={3}
       p={4}
     >
@@ -84,7 +89,7 @@ export function Game({
           code={data.firstTeamCountryCode}
           position='right'
           onChangeText={setFirstTeamPoints}
-          inputDisabled={!!data.guess}
+          inputDisabled={!!data.guess || timesUp}
           teamPoints={data.guess?.firstTeamPoints}
         />
 
@@ -94,7 +99,7 @@ export function Game({
           code={data.secondTeamCountryCode}
           position='left'
           onChangeText={setSecondTeamPoints}
-          inputDisabled={!!data.guess}
+          inputDisabled={!!data.guess || timesUp}
           teamPoints={data.guess?.secondTeamPoints}
         />
       </HStack>
@@ -106,13 +111,26 @@ export function Game({
           bgColor='green.500'
           mt={4}
           onPress={onGuessConfirm}
+          isDisabled={timesUp}
+          _disabled={{
+            backgroundColor: 'gray.600',
+            opacity: 1,
+          }}
         >
           <HStack alignItems='center'>
-            <Text color='white' fontSize='xs' fontWeight='bold' mr={3}>
-              {i18n.t('components.game.confirmarPalpite').toUpperCase()}
-            </Text>
+            {timesUp ? (
+              <Text color='gray.300' fontSize='xs' fontWeight='bold' mr={3}>
+                {i18n.t('components.game.tempoEsgotado').toUpperCase()}
+              </Text>
+            ) : (
+              <>
+                <Text color='white' fontSize='xs' fontWeight='bold' mr={3}>
+                  {i18n.t('components.game.confirmarPalpite').toUpperCase()}
+                </Text>
 
-            <Check color={colors.white} size={sizes[4]} />
+                <Check color={colors.white} size={sizes[4]} />
+              </>
+            )}
           </HStack>
         </Button>
       )}

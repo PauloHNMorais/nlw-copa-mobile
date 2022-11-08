@@ -35,7 +35,7 @@ export function Team({
         fontWeight='bold'
         maxLength={2}
         px={0}
-        {...(!!inputDisabled && { value: String(teamPoints) })}
+        {...(!!inputDisabled && { value: String(teamPoints || '') })}
       />
 
       {position === 'right' && (

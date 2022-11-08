@@ -43,7 +43,7 @@ export function RankingCard({ position, data }: Props) {
     >
       <TouchableOpacity
         onPress={() =>
-          navigate('profile', {
+          navigate(data.id === user.sub ? 'myProfile' : 'userProfile', {
             userId: data?.id,
             isUserProfile: data.id === user.sub,
           })

@@ -1,4 +1,5 @@
-import { NativeBaseProvider, StatusBar } from 'native-base';
+import 'react-native-gesture-handler';
+import { NativeBaseProvider, StatusBar, ToastProvider } from 'native-base';
 import { THEME } from './src/styles/theme';
 import { useColorScheme } from 'react-native';
 import {
@@ -20,11 +21,14 @@ import { Loading } from './src/components/Loading';
 import { AuthContextProvider } from './src/contexts/AuthContext';
 import { Routes } from './src/routes';
 import * as Localization from 'expo-localization';
+import * as NavigationBar from 'expo-navigation-bar';
 
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import { SettingsContextProvider } from './src/contexts/SettingsContext';
 import { useSettings } from './src/hooks/useSettings';
+import { ToastContextProvider } from './src/contexts/ToastContext';
+import { useEffect } from 'react';
 require('dayjs/locale/pt-br');
 dayjs.locale(Localization.locale);
 dayjs.extend(localizedFormat);
@@ -47,19 +51,49 @@ function App() {
   });
   const { language, setLanguage, setTheme, theme } = useSettings();
 
+  useEffect(() => {
+    const changeColor = async () => {
+      if (theme === 'auto') {
+        await NavigationBar.setBackgroundColorAsync(
+          THEME[colorScheme].colors.card
+        );
+        await NavigationBar.setButtonStyleAsync(
+          colorScheme === 'dark' ? 'light' : 'dark'
+        );
+      } else if (theme) {
+        await NavigationBar.setBackgroundColorAsync(THEME[theme].colors.card);
+        await NavigationBar.setButtonStyleAsync(
+          theme === 'dark' ? 'light' : 'dark'
+        );
+      }
+    };
+
+    changeColor();
+  }, [theme, colorScheme]);
+
   return (
     <NativeBaseProvider
       key={language}
       theme={theme === 'auto' ? THEME[colorScheme] : THEME[theme]}
     >
-      <AuthContextProvider>
-        <StatusBar
-          barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
-          backgroundColor='transparent'
-          translucent
-        />
-        {fontsLoaded ? <Routes /> : <Loading />}
-      </AuthContextProvider>
+      <ToastContextProvider>
+        <AuthContextProvider>
+          <StatusBar
+            barStyle={
+              theme === 'auto'
+                ? colorScheme === 'dark'
+                  ? 'light-content'
+                  : 'dark-content'
+                : theme === 'dark'
+                ? 'light-content'
+                : 'dark-content'
+            }
+            backgroundColor='transparent'
+            translucent
+          />
+          {fontsLoaded ? <Routes /> : <Loading />}
+        </AuthContextProvider>
+      </ToastContextProvider>
     </NativeBaseProvider>
   );
 }

@@ -10,6 +10,7 @@ import { Pools } from '../screens/Pools';
 import { Profile } from '../screens/Profile';
 import { Settings } from '../screens/Settings';
 import { createLocalization } from '../utils/createLocalization';
+import { MyPoolsRoutes } from './myPools.routes';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -27,11 +28,13 @@ export function AppRoutes() {
         tabBarLabelPosition: 'beside-icon',
         tabBarActiveTintColor: colors.yellow[500],
         tabBarInactiveTintColor: colors.gray[300],
+        unmountOnBlur: true,
         tabBarStyle: {
-          borderTopWidth: 0,
-          borderTopColor: colors.gray[600],
           backgroundColor: colors.card,
-          marginRight: -sizes[20],
+          marginRight: -72,
+        },
+        tabBarLabelStyle: {
+          fontWeight: '500',
         },
         tabBarItemStyle: {
           position: 'relative',
@@ -49,7 +52,7 @@ export function AppRoutes() {
       />
       <Screen
         name='pools'
-        component={Pools}
+        component={MyPoolsRoutes}
         options={{
           tabBarIcon: ({ color }) => <SoccerBall color={color} size={size} />,
           tabBarLabel: i18n.t('routes.boloes'),
@@ -67,19 +70,7 @@ export function AppRoutes() {
       />
 
       <Screen
-        name='find'
-        component={Find}
-        options={{ tabBarButton: () => null }}
-      />
-
-      <Screen
-        name='details'
-        component={Details}
-        options={{ tabBarButton: () => null }}
-      />
-
-      <Screen
-        name='profile'
+        name='myProfile'
         component={Profile}
         options={{ tabBarButton: () => null }}
       />
